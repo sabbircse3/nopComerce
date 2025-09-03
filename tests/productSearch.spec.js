@@ -18,22 +18,4 @@ const { chromium } = require('playwright');
   // Click search button
   await page.click('button.search-box-button');
 
-
-  
-  // Wait for the "Add to cart" button
-  await page.click('.product-box-add-to-cart-button');
-  // const addToCartButton = page.locator('.product-box-add-to-cart-button');
-  // await addToCartButton.waitFor({ state: 'visible', timeout: 10000 });
-
-    // Click the button
-  // await addToCartButton.click();
-
- // Optional: Check if success message appears
-  const successMessage = page.locator('.bar-notification.success');
-  if (await successMessage.isVisible({ timeout: 5000 })) {
-    console.log('✅ Product added to cart successfully.');
-  } else {
-    console.log('⚠️ Could not verify if product was added to cart.');
-  }
-
 })();
