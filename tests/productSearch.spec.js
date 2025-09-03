@@ -18,4 +18,6 @@ const { chromium } = require('playwright');
   // Click search button
   await page.click('button.search-box-button');
 
+  
+
 })();

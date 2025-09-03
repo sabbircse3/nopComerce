@@ -44,6 +44,35 @@ const { chromium } = require('playwright');
     console.log(`Opening first product: ${productName}`);
 
     await firstProductLink.click();
+
+    
   }
+
+
+  // await firstProductLink.click();
+  // console.log('Clicked on the first product link to open product details page');
+  // // Wait for navigation to complete
+  // await page.waitForLoadState('domcontentloaded');
+  // console.log('Product details page loaded');
+  // // Now on product details page, wait for Add to Cart button
+  // await page.waitForSelector('#add-to-cart-button-5', { state: 'visible', timeout: 10000 });
+  // console.log('Add to Cart button is visible on product details page');
+  
+
+  // // Wait for quantity input
+  // const qtyInput = page.locator('#product_enteredQuantity_5');
+  // // await qtyInput.waitFor({ state: 'visible', timeout: 10000 });
+
+  // // Set quantity if needed
+  // await qtyInput.fill('2'); // উদাহরণ: 2 quantity
+
+  // // Click Add to Cart button
+  // const addToCartBtn = page.locator('#add-to-cart-button-5');
+  // await addToCartBtn.waitFor({ state: 'visible', timeout: 10000 });
+  // await addToCartBtn.click();
+  // console.log('Clicked Add to Cart on product details page');
+  // //add to card
+
+  // // await page.click('#add-to-cart-button-5');
 
 })();
