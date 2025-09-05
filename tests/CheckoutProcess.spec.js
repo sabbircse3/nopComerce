@@ -26,7 +26,7 @@ const { chromium } = require('playwright');
     for (let i = 0; i < productCount; i++) {
       const name = await products.nth(i).locator("td.product a").innerText();
       const qty = await products.nth(i).locator("input.qty-input").inputValue();
-      console.log(`➡️ Product: ${name} | Quantity: ${qty}`);
+      console.log(`Product: ${name} | Quantity: ${qty}`);
     }
   }
 
