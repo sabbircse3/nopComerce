@@ -43,14 +43,19 @@ const { chromium } = require('playwright');
     const productName = await firstProductLink.textContent();
     console.log(`Opening first product: ${productName}`);
 
+
     await firstProductLink.click();
-    // Fill quantity (e.g., 3)
-    await page.fill('#product_enteredQuantity_5', '3');
+    // // Fill quantity (e.g., 3)
+    // await page.fill('#product_enteredQuantity_5', '3');
 
-    // Click Add to Cart button
-    await page.click('#add-to-cart-button-5');
+    // // Click Add to Cart button
+    // await page.click('#add-to-cart-button-5');
 
-    console.log('Clicked Add to Cart button.');
+    // console.log('Clicked Add to Cart button.');
+
+    const addToCartBtn = page.locator("//button[@id='add-to-cart-button-1']");
+    await addToCartBtn.waitFor({ state: 'visible' });
+    await addToCartBtn.click();
     
   }
 
