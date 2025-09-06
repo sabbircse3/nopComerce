@@ -15,6 +15,7 @@ const { chromium } = require('playwright');
      await Promise.all([
     page.waitForNavigation({ waitUntil: 'networkidle' }),
     page.selectOption('#customerCurrency', 'Euro'),
+    page.locator('#customerCurrency').screenshot({path:'./screenshots/currencyChange.png'}),
     page.goto('https://demo.nopcommerce.com/changecurrency/6?returnUrl=%2F')
   ]);
 
