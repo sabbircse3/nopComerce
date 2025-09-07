@@ -22,4 +22,5 @@ await page.waitForFunction(() => {
 const message = await page.locator('#newsletter-result-block').textContent();
 console.log("Newsletter Message:", JSON.stringify(message));
 
+ await browser.close();
 })();

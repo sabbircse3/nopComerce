@@ -19,5 +19,5 @@ const { chromium } = require('playwright');
   await page.click('button.search-box-button');
 
   
-
+ await browser.close();
 })();

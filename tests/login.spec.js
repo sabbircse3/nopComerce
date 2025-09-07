@@ -34,5 +34,5 @@ const { chromium } = require('playwright');
     console.error('Login failed');
   } 
 
-
+ await browser.close();
 })();

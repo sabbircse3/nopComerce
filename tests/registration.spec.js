@@ -42,5 +42,5 @@ const { chromium } = require('playwright');
     console.error('Registration failed');
     }
 
-
+ await browser.close();
 })();

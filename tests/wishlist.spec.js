@@ -48,23 +48,23 @@ const { chromium } = require('playwright');
     const addToWishlistBtn = page.locator('#add-to-wishlist-button-5');
     await addToWishlistBtn.waitFor({ state: 'visible', timeout: 10000 });
     await addToWishlistBtn.click();
-      // 2️⃣ Trigger Ajax function directly inside browser context
-  console.log('⚡ Triggering AjaxCart.addproducttocart_details via evaluate...');
+      //Trigger Ajax function directly inside browser context
+  console.log('Triggering AjaxCart.addproducttocart_details via evaluate...');
   await page.evaluate(() => {
     AjaxCart.addproducttocart_details('/addproducttocart/details/5/2', '#product-details-form');
   });
 
-  // 3️⃣ Wait for success notification (green bar message)
+  //Wait for success notification (green bar message)
   const successBar = page.locator('#bar-notification.success');
   await successBar.waitFor({ state: 'visible', timeout: 10000 });
-  console.log('✅ Wishlist Ajax call executed successfully.');
-    console.log('💖 Clicked Add to Wishlist button.');
+  console.log('Wishlist Ajax call executed successfully.');
+    console.log('Clicked Add to Wishlist button.');
 
   }
 
 //   const addToWishlistBtn = page.locator('#add-to-wishlist-button-5');
 //   await addToWishlistBtn.waitFor({ state: 'visible', timeout: 10000 });
 //   await addToWishlistBtn.click();
-//   console.log('💖 Clicked Add to Wishlist button.');
+//   console.log('Clicked Add to Wishlist button.');
 //   // await browser.close();
 })();
