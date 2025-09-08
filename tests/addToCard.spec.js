@@ -1,7 +1,7 @@
 const { chromium } = require('playwright');
 
 (async () => {
-  const browser = await chromium.launch({ headless: false });
+  const browser = await chromium.launch({ headless: false, slowMo: 500 });
   const context = await browser.newContext();
   const page = await context.newPage();
 
@@ -11,32 +11,39 @@ const { chromium } = require('playwright');
   await page.fill('#small-searchterms', searchTerm);
   await page.click('button.search-box-button');
 
-  await page.waitForSelector('.item-grid .product-item', { timeout: 15000 });
-
   const products = await page.locator('.item-grid .product-item').all();
   console.log(`Found ${products.length} products on the page.`);
 
   if (products.length > 0) {
     const firstProductLink = page.locator('.product-title a').first();
-    console.log('Waiting for the first product link to be visible...');
     await firstProductLink.waitFor({ state: 'visible', timeout: 10000 });
-
     const productName = await firstProductLink.textContent();
-    console.log(`Opening first product: ${productName?.trim()}`);
-
+    console.log(`Opening first product: ${productName}`);
     await firstProductLink.click();
 
-    //Wait until page fully loads
-    await page.waitForLoadState('domcontentloaded');
-
-    //Locate Add to Cart button dynamically
-    const addToCartBtn = page.locator("button[id^='add-to-cart-button']");
-    await addToCartBtn.waitFor({ state: 'visible', timeout: 15000 });
-
+    const addToCartBtn = page.locator("//button[contains(@id,'add-to-cart-button')]");
+    await addToCartBtn.waitFor({ state: 'visible', timeout: 10000 });
     await addToCartBtn.click();
-    console.log('Clicked Add to Cart button successfully.');
-  } else {
-    console.log('No products found for search term:', searchTerm);
+    console.log("Clicked Add to Cart button.");
+
+    // Wait for bar-notification to be attached (even if hidden)
+    await page.waitForSelector('#bar-notification', { state: 'attached', timeout: 10000 });
+    console.log("Notification attached to DOM!");
+
+    // Polling loop: wait until element becomes visible
+    let isVisible = false;
+    for (let i = 0; i < 10; i++) {
+      isVisible = await page.locator('#bar-notification').isVisible();
+      if (isVisible) break;
+      await page.waitForTimeout(500);
+    }
+
+    if (isVisible) {
+      const notificationText = await page.locator('#bar-notification .content').textContent();
+      console.log("Notification:", notificationText?.trim());
+    } else {
+      console.log("Notification never became visible, but it exists in DOM!");
+    }
   }
 
   // await browser.close();
