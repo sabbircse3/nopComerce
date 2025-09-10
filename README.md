@@ -6,7 +6,7 @@ Here is an Automation Testing task in UI level. The main focus is system testing
 
 Before setting this porject, Please ensure this tools in your computer
 
-- **Node.js** v20.18.0
+- **Node.js** v22.17.1
 - **npm** v10.9.2
 - **Google Chrome** (latest version)
 
@@ -21,7 +21,7 @@ npm -v    # Verify npm
 
 # Install & Setup
 
-### 1. Install playWright
+### Install playWright
 
 ```bash
 npm init -y
@@ -35,36 +35,23 @@ npm install -D @playwright/test@latest
 
 #Running Test
 
-###Run All test
-
-```bash
-npm run test
-```
-
-### Run Single Test
-
-```bash
-node filename.format
-node login.spec.js
-```
-
-#Generate Test Report
-
-### 1. Generate the Report and show it
-
+### Generate the Report and show it
 ```bash
 npx playwright test --reporter=html
 npx playwright show-report
 
 ```
-### 1. single file run & show it's report
-
+### single file run & show it's report
 ```bash
 npx playwright test tests/Newsletter.spec.js --reporter=html
 ```
 
+### Full test run
+```bash
+npx playwright test
+```
 
-Clone the project
+### Clone the project
 
 ```bash
     git clone https://github.com/sabbircse3/automation-saucedemo.git 
